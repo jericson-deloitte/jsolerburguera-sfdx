@@ -9,7 +9,7 @@ node {
     env.SF_CONSUMER_KEY = "3MVG9JEx.BE6yifNYKyCrEC8c2Wz82eH0hupqiv3hGKpfBZ_n3GBnV2A3QKVSOHCha0g..FgP2qouVjsZMSEo"
     env.SF_INSTANCE_URL = "https://login.salesforce.com"
     env.SF_USERNAME = "jsolerburguera@dev-sfdx.com"
-    env.WORKSPACE = "/var/jenkins_home/"
+    //env.WORKSPACE = "/var/jenkins_home/"
     env.SERVER_KEY_CREDENTALS_ID = "b30e00f9-2470-4551-957e-bcbf3b82a060" 
 
     def SF_CONSUMER_KEY=env.SF_CONSUMER_KEY
@@ -22,7 +22,7 @@ node {
 
     def toolbelt = tool 'toolbelt'
 
-    echo "SF_CONSUMER_KEY is ${env.SF_CONSUMER_KEY} or ${SF_CONSUMER_KEY}"
+    echo "WORKSPACE is ${env.WORKSPACE} or ${WORKSPACE}"
 
     // -------------------------------------------------------------------------
     // Check out code from source control.
