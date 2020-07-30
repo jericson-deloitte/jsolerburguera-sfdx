@@ -126,6 +126,8 @@ node {
                     output = output.readLines().drop(1).join(" ")
                 }
 
+                echo ${output}
+
                 // Wait 5 minutes for package replication.
                 sleep 300
 
