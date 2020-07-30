@@ -22,7 +22,7 @@ node {
 
     def toolbelt = tool 'toolbelt'
 
-    echo "WORKSPACE is ${env.WORKSPACE} or ${WORKSPACE}"
+    //echo "WORKSPACE is ${env.WORKSPACE} or ${WORKSPACE}"
 
     // -------------------------------------------------------------------------
     // Check out code from source control.
@@ -126,7 +126,7 @@ node {
                     output = output.readLines().drop(1).join(" ")
                 }
 
-                echo ${output}
+                echo "The output is ${output}"
 
                 // Wait 5 minutes for package replication.
                 sleep 300
