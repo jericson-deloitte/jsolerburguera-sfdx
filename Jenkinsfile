@@ -10,6 +10,7 @@ node {
     env.SF_INSTANCE_URL = "https://login.salesforce.com"
     env.SF_USERNAME = "jsolerburguera@dev-sfdx.com"
     env.SERVER_KEY_CREDENTALS_ID = "b30e00f9-2470-4551-957e-bcbf3b82a060" 
+    env.SPRINTST_USERNAME = "jsolerburguera@dev-sfdx.com"
 
     def SF_CONSUMER_KEY=env.SF_CONSUMER_KEY
     def SF_USERNAME=env.SF_USERNAME
@@ -197,6 +198,18 @@ node {
                     error 'Salesforce package install scratch org deletion failed.'
                 }
             } 
+
+
+            // -------------------------------------------------------------------------
+            // Install package in SPRINTST org.
+            // -------------------------------------------------------------------------
+
+            stage('Install Package In Scratch Org') {
+                rc = command "sfdx force:package:install --package ${PACKAGE_VERSION} --targetusername ${SPRINTST_USERNAME} --wait 10"
+                if (rc != 0) {
+                    error 'Salesforce package install failed in Sprintst.'
+                }
+            }
         } 
     }
 }
