@@ -126,7 +126,7 @@ node {
                     output = output.readLines().drop(1).join(" ")
                 }
 
-                echo "The output is ${output}"
+                echo "The package version created is ${output}"
 
                 // Wait 5 minutes for package replication.
                 sleep 300
@@ -137,8 +137,6 @@ node {
                 PACKAGE_VERSION = response.result.SubscriberPackageVersionId
 
                 response = null
-
-                echo ${PACKAGE_VERSION}
             }
 
 
@@ -146,67 +144,67 @@ node {
             // Create new scratch org to install package to.
             // -------------------------------------------------------------------------
 
-            stage('Create Package Install Scratch Org') {
+            /* stage('Create Package Install Scratch Org') {
                 rc = command "sfdx force:org:create --targetdevhubusername HubOrg --setdefaultusername --definitionfile config/project-scratch-def.json --setalias installorg --wait 10 --durationdays 1"
                 if (rc != 0) {
                     error 'Salesforce package install scratch org creation failed.'
                 }
-            }
+            } */
 
 
             // -------------------------------------------------------------------------
             // Display install scratch org info.
             // -------------------------------------------------------------------------
 
-            stage('Display Install Scratch Org') {
+            /* stage('Display Install Scratch Org') {
                 rc = command "sfdx force:org:display --targetusername installorg"
                 if (rc != 0) {
                     error 'Salesforce install scratch org display failed.'
                 }
-            }
+            } */
 
 
             // -------------------------------------------------------------------------
             // Install package in scratch org.
             // -------------------------------------------------------------------------
 
-            stage('Install Package In Scratch Org') {
+            /* stage('Install Package In Scratch Org') {
                 rc = command "sfdx force:package:install --package ${PACKAGE_VERSION} --targetusername installorg --wait 10"
                 if (rc != 0) {
                     error 'Salesforce package install failed.'
                 }
-            }
+            } */
 
 
             // -------------------------------------------------------------------------
             // Run unit tests in package install scratch org.
             // -------------------------------------------------------------------------
 
-            stage('Run Tests In Package Install Scratch Org') {
+            /* stage('Run Tests In Package Install Scratch Org') {
                 rc = command "sfdx force:apex:test:run --targetusername installorg --resultformat tap --codecoverage --testlevel ${TEST_LEVEL} --wait 10"
                 if (rc != 0) {
                     error 'Salesforce unit test run in pacakge install scratch org failed.'
                 }
-            }
+            } */ 
 
 
             // -------------------------------------------------------------------------
             // Delete package install scratch org.
             // -------------------------------------------------------------------------
 
-            stage('Delete Package Install Scratch Org') {
+            /* stage('Delete Package Install Scratch Org') {
                 rc = command "sfdx force:org:delete --targetusername installorg --noprompt"
                 if (rc != 0) {
                     error 'Salesforce package install scratch org deletion failed.'
                 }
-            } 
+            } */
 
 
             // -------------------------------------------------------------------------
             // Install package in SPRINTST org.
             // -------------------------------------------------------------------------
 
-            stage('Install Package In Scratch Org') {
+            stage('Install Package In SPRINTST Org') {
                 rc = command "sfdx force:package:install --package ${PACKAGE_VERSION} --targetusername ${SPRINTST_USERNAME} --wait 10"
                 if (rc != 0) {
                     error 'Salesforce package install failed in Sprintst.'
