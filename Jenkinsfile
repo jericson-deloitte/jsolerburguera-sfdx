@@ -201,15 +201,41 @@ node {
 
 
             // -------------------------------------------------------------------------
-            // Install package in SPRINTST org.
+            // Install package in SPRINTST Sandbox.
             // -------------------------------------------------------------------------
 
             stage('Install Package In SPRINTST Org') {
+
+                //In case we want to deploy using unlocked packages
                 rc = command "sfdx force:package:install --package ${PACKAGE_VERSION} --targetusername ${SPRINTST_USERNAME} --wait 10"
                 if (rc != 0) {
                     error 'Salesforce package install failed in Sprintst.'
                 }
+
+                //In case we want to deploy using mdapi
+                /* # Create a temp directory in your repository
+                mkdir mdapi_temp_dir
+                
+                # Convert your sources to the metadata API format
+                # and place them in the temp directory
+                rc = command "sfdx force:source:convert -d mdapi_temp_dir/"
+                if (rc != 0) {
+                    error 'Error converting source format to mdapi format'
+                }
+                
+                # Deploy the sources to a target org
+                # Assuming that $targetOrg is a username on the target org
+                # Command times out if it takes longer than 10 minutes
+                rc = command "sfdx force:mdapi:deploy -d mdapi_temp_dir/ --targetusername ${SPRINTST_USERNAME} --wait 10"
+                if (rc != 0) {
+                    error 'Error Deploying into Sprintst'
+                }
+                
+                # Remove the temp directory
+                rm -fr mdapi_temp_dir */
             }
+
+
         } 
     }
 }
