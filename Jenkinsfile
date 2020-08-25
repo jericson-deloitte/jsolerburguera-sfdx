@@ -4,10 +4,10 @@ import groovy.json.JsonSlurperClassic
 
 node {
 
-    //load "$JENKINS_HOME/sfdc-jorgedev.groovy"
 
     env.SF_CONSUMER_KEY = "3MVG9JEx.BE6yifNYKyCrEC8c2Wz82eH0hupqiv3hGKpfBZ_n3GBnV2A3QKVSOHCha0g..FgP2qouVjsZMSEo"
-    env.SF_INSTANCE_URL = "https://login.salesforce.com"
+    env.SF_INSTANCE_URL = $LOGIN_URL
+ println $LOGIN_URL 
     env.SF_USERNAME = "jsolerburguera@dev-sfdx.com"
     env.SERVER_KEY_CREDENTALS_ID = "b30e00f9-2470-4551-957e-bcbf3b82a060" 
     env.SPRINTST_USERNAME = "jsolerburguera@dev-sfdx.com"
